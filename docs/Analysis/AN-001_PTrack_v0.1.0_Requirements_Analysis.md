@@ -1,10 +1,10 @@
-# Requirements Analysis
+ر# Requirements Analysis
 =====================
 Full List
 ---------
 | Analysis ID | Source Ref | Domain / Package | Scope Summary | Owner | Status | Last Updated |
 |-------------|------------|------------------|---------------|-------|--------|--------------|
-| AN-001      | SRC-PRD-PTrack-v0.1.0 |  | Core MVP: create projects, track stage and status, persist data across sessions | | Draft | 2026-08-01 |
+| AN-001      | SRC-PRD-PTrack-v0.1.0 |  | Core MVP: create projects, track stage and status, persist data across sessions | | Approved | 2026-08-04 |
 ---
 Analysis Template
 -----------------
@@ -15,9 +15,9 @@ Analysis Template
 | Source Ref | SRC-PRD-PTrack-v0.1.0 (PRD document, "PTrack V0.1.0 (MVP)", dated 13/7/2026) |
 | Domain / Package | |
 | Scope Summary | MVP allowing a single local user to create projects, assign/update development stage, assign/update status (incl. Completed), and persist data between sessions |
-| Analyst | |
-| Reviewer | |
-| Status | Draft |
+| Analyst | Rayhana Alzarouq |
+| Reviewer | Rayhana Alzarouq |
+| Status | Approved |
 | Priority Context | Must |
 | Analysis Date | 2026-08-01 |
 ---
@@ -122,7 +122,7 @@ Analysis Template
 ## 8. Decision and Sign-off
 | Decision | Value |
 |----------|-------|
-| Ready for authoring | No |
-| Blockers | Ambiguities #1-#5 unresolved; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
-| Reviewer notes | |
-| Approval date | |
+| Ready for authoring | Yes |
+| Blockers | None at Analysis level. Ambiguities #1-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
+| Reviewer notes | Every candidate classified (FR-001..FR-008, NFR-001..NFR-006, UC-001..UC-005); open questions logged in Section 4; file update plan listed in Section 7; no hidden assumptions |
+| Approval date | 2026-08-04 |
