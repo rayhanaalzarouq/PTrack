@@ -11,7 +11,7 @@
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | System (Persistence Mechanism) |
 | Level | System |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 ---
 ### 2. Brief Description

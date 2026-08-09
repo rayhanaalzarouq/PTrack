@@ -8,7 +8,7 @@
 | Module | Stage Tracking |
 | Requirement Code | [FR-STG-003-001] Display Stage |
 | Title | Display Development Stage |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0) |

@@ -8,7 +8,7 @@
 | Module | Project Management |
 | Requirement Code | [FR-PM-002-001] List Projects |
 | Title | Display Project List |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 2 |
