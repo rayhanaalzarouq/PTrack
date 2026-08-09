@@ -8,7 +8,7 @@
 | Module | Status Tracking |
 | Requirement Code | [FR-STS-002-001] Update Status |
 | Title | Update Project Status |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0) |
