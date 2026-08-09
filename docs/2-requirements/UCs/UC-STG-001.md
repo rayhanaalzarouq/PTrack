@@ -27,8 +27,8 @@ The user chooses to assign or change the development stage of a project.
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User selects a project | System shows the project's current stage (or indicates none assigned yet) |
-| 2 | User selects a new stage value. Exact value set is TBD pending Ambiguity #2 (AN-001) | System accepts the selected/entered value |
+| 1 | User selects a project | System shows the project's current stage, or "No stage assigned" if none set yet |
+| 2 | User selects a new stage value from the defined set (Planning, Design, Development, Testing, Done) | System accepts the selected value |
 | 3 | User confirms the change | System updates and displays the project's current stage |
 ---
 ### 6. Alternate Flows / Exceptions
@@ -38,8 +38,8 @@ The user chooses to assign or change the development stage of a project.
   1. User assigns an initial stage value (see FR-STG-001).
   2. System records it as the project's current stage.
 #### E1 - Invalid or Undefined Stage Value
-- Condition: The stage value entered/selected does not match the allowed set.
-- System Response: TBD pending Ambiguity #2 (AN-001) -- the allowed stage value set (fixed list vs. free text) is not yet defined, so this exception cannot be fully specified.
+- Condition: The stage value entered/selected does not match one of the five defined stage values.
+- System Response: System rejects the change, prompts the user to choose one of the valid stage values (Planning, Design, Development, Testing, Done), and the project's stage remains unchanged.
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -49,7 +49,7 @@ The user chooses to assign or change the development stage of a project.
 ---
 ### 8. Business Rules
 - BR-001: A project can have exactly one current development stage at a time.
-- BR-002: The fixed list of valid stage values (or whether free text is allowed) is TBD pending Ambiguity #2 (AN-001).
+- BR-002: The valid stage values are: Planning, Design, Development, Testing, Done. No other values or free text are permitted.
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002

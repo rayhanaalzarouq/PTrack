@@ -26,13 +26,13 @@
 | # | Given | When | Then |
 |---|-------|------|------|
 | AC1 | An existing project has a status other than "Completed" | The user updates the status to "Completed" | The project reflects the "Completed" status |
-| AC2 | TBD pending Ambiguity #3 (AN-001) -- full status value set undefined | TBD | TBD |
-| AC3 | TBD pending Ambiguity #3 (AN-001) | TBD | TBD |
+| AC2 | The user attempts to update a status | The selected value is not one of the three defined status values (Not Started, In Progress, Completed) | The system shall reject the update and prompt the user to select a valid status |
+| AC3 | The user attempts to update a status | An unexpected error occurs while saving | The system shall not partially update the project and shall report the failure to the user |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002.
 - Security implications: None identified.
-- Dependencies: Blocked by Ambiguity #3 in AN-001 -- the full status value set (beyond "Completed") is not yet defined. AC2 and AC3 cannot be finalized until this is resolved.
+- Dependencies: Status values are fixed for v0.1.0: Not Started, In Progress, Completed (resolved during Requirements phase; see AN-001 Ambiguity #3).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |

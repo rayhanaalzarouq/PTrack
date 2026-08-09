@@ -26,13 +26,13 @@
 | # | Given | When | Then |
 |---|-------|------|------|
 | AC1 | A project has a status of "Completed" | The user views the project | The status "Completed" is displayed |
-| AC2 | A newly created project has not had its status explicitly set | The user views the project | The system shall display a defined default status. Exact default and full status value set are TBD pending Ambiguity #3 (AN-001) |
+| AC2 | A newly created project has not had its status explicitly set | The user views the project | The system shall display "No status set" as an explicit empty state, rather than an incorrect value or a default status |
 | AC3 | The status value fails to load due to a data access issue | The user views the project | The system shall display an error state rather than a blank or incorrect status |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: Display should complete within the NFR-002 response target.
 - Security implications: None identified.
-- Dependencies: The full set of status values beyond "Completed" is pending resolution of Ambiguity #3 in AN-001.
+- Dependencies: Status values are fixed for v0.1.0: Not Started, In Progress, Completed (resolved during Requirements phase; see AN-001 Ambiguity #3).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |

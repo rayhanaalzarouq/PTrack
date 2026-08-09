@@ -27,8 +27,8 @@ The user chooses to view or change the status of a project.
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User selects a project | System shows the project's current status |
-| 2 | User selects a new status value (e.g., "Completed"). Full value set is TBD pending Ambiguity #3 (AN-001) | System accepts the selected value |
+| 1 | User selects a project | System shows the project's current status, or "No status set" if none set yet |
+| 2 | User selects a new status value from the defined set (Not Started, In Progress, Completed) | System accepts the selected value |
 | 3 | User confirms the change | System updates and displays the project's current status |
 ---
 ### 6. Alternate Flows / Exceptions
@@ -38,8 +38,8 @@ The user chooses to view or change the status of a project.
   1. User selects "Completed" as the status (see FR-STS-002).
   2. System updates the status to "Completed" and reflects it in the project view.
 #### E1 - Invalid or Undefined Status Value
-- Condition: The status value entered/selected does not match the allowed set.
-- System Response: TBD pending Ambiguity #3 (AN-001) -- the full allowed status value set beyond "Completed" is not yet defined, so this exception cannot be fully specified.
+- Condition: The status value entered/selected does not match one of the three defined status values.
+- System Response: System rejects the change, prompts the user to choose one of the valid status values (Not Started, In Progress, Completed), and the project's status remains unchanged.
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -49,7 +49,7 @@ The user chooses to view or change the status of a project.
 ---
 ### 8. Business Rules
 - BR-001: A project can have exactly one current status at a time.
-- BR-002: The full set of valid status values beyond "Completed" is TBD pending Ambiguity #3 (AN-001).
+- BR-002: The valid status values are: Not Started, In Progress, Completed. No other values are permitted.
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002

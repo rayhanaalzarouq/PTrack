@@ -27,7 +27,7 @@ The user closes the application (or ends the session), or reopens the applicatio
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User closes the application (or session ends) | System saves the current state of all projects. Storage mechanism is TBD pending Ambiguity #4 (AN-001) |
+| 1 | User closes the application (or session ends) | System saves the current state of all projects to the browser's localStorage |
 | 2 | User reopens the application | System loads the previously saved project data |
 | 3 | User views the project list | System displays all projects exactly as last set (name, stage, status) |
 ---
@@ -38,18 +38,18 @@ The user closes the application (or ends the session), or reopens the applicatio
   1. System finds no saved data.
   2. System displays an empty project list with no error (see FR-DATA-001 AC2).
 #### E1 - Storage Unavailable or Corrupted
-- Condition: Saved project data cannot be read, or a save operation fails.
-- System Response: TBD pending Ambiguity #4 (AN-001) -- the exact failure handling depends on the storage mechanism, which is not yet confirmed. At minimum, the system shall not silently lose data without informing the user (see FR-DATA-001 AC3).
+- Condition: The browser's localStorage is unavailable or a read/write fails (e.g., private/incognito browsing, storage quota exceeded, or the user cleared browser data).
+- System Response: The system shall not silently lose data; it displays a clear message informing the user that data could not be saved or loaded (see FR-DATA-001 AC3).
 ---
 ### 7. Postconditions
 #### Success Postconditions
 - All previously created or updated projects, including their stage and status, are present exactly as last set.
 #### Failure Postconditions
-- TBD pending Ambiguity #4 (AN-001); at minimum, data loss must not occur silently.
+- If localStorage is unavailable or fails, the user is informed and no data is silently lost.
 ---
 ### 8. Business Rules
 - BR-001: Project data must survive an application close/reopen cycle under normal conditions (see NFR-003).
-- BR-002: The storage mechanism (local browser storage vs. file vs. future centralized DB per Release 0.2) is TBD pending Ambiguity #4 (AN-001).
+- BR-002: The storage mechanism for v0.1.0 is the browser's localStorage (per ADR-003). Data does not sync across browsers or devices; clearing browser data/localStorage removes all saved projects.
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-003, NFR-006

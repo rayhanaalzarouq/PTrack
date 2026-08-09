@@ -25,14 +25,14 @@
 ## 4. Acceptance Criteria
 | # | Given | When | Then |
 |---|-------|------|------|
-| AC1 | A project exists without an assigned stage | The user assigns a stage value | The project reflects the assigned stage. Exact stage value set is TBD pending Ambiguity #2 (AN-001) |
-| AC2 | TBD pending Ambiguity #2 (AN-001) | TBD | TBD |
-| AC3 | TBD pending Ambiguity #2 (AN-001) | TBD | TBD |
+| AC1 | A project exists without an assigned stage | The user assigns a stage value from the defined set (Planning, Design, Development, Testing, Done) | The project reflects the assigned stage |
+| AC2 | The user attempts to assign a stage | The selected value is not one of the five defined stage values | The system shall reject the assignment and prompt the user to select a valid stage |
+| AC3 | The user attempts to assign a stage | An unexpected error occurs while saving | The system shall not partially update the project and shall report the failure to the user |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002.
 - Security implications: None identified.
-- Dependencies: Blocked by Ambiguity #2 in AN-001 -- the fixed list of stage values (or free text) is not yet defined. AC2 and AC3 (boundary and failure cases) cannot be finalized until this is resolved.
+- Dependencies: Stage values are fixed for v0.1.0: Planning, Design, Development, Testing, Done (resolved during Requirements phase; see AN-001 Ambiguity #2). No free text or other values are permitted.
 ---
 ## 6. Traceability
 | Related Artifact | Reference |

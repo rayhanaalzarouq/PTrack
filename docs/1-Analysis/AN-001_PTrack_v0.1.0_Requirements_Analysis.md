@@ -1,4 +1,4 @@
-ر# Requirements Analysis
+# Requirements Analysis
 =====================
 Full List
 ---------
@@ -113,16 +113,17 @@ Analysis Template
 ## 7. Recommended File Updates
 | File | Planned Update | Reason |
 |------|------------------|--------|
-| docs/FR-Registry/FRs.md | Create; add rows FR-001 to FR-008 | Register FR candidates |
-| docs/UC-Registry/UCs.md | Create; add rows UC-001 to UC-005 | Register UC candidates |
-| docs/Packages/[Package]/FR-001.md ... FR-008.md | Create | Detailed FR content, one file per ID (package name TBD) |
-| docs/Packages/[Package]/UC-001.md ... UC-005.md | Create | Detailed UC content (actors, flows, pre/postconditions per template), one file per ID (package name TBD) |
-| docs/NFRs.md | Create; add rows NFR-001 to NFR-006 | NFR impact alignment |
+| 2-requirements/FRs.md | Create; add rows FR-001 to FR-008 | Register FR candidates |
+| 2-requirements/UCs.md | Create; add rows UC-001 to UC-005 | Register UC candidates |
+| modules/[Module]/FR-001.md ... FR-008.md | Create | Detailed FR content, one file per ID (module name TBD) |
+| modules/[Module]/UC-001.md ... UC-005.md | Create | Detailed UC content (actors, flows, pre/postconditions per template), one file per ID (module name TBD) |
+| 2-requirements/NFRs.md | Create; add rows NFR-001 to NFR-006 | NFR impact alignment |
 ---
 ## 8. Decision and Sign-off
 | Decision | Value |
 |----------|-------|
 | Ready for authoring | Yes |
-| Blockers | None at Analysis level. Ambiguities #1-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
+| Blockers | None at Analysis level. Ambiguities #1-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under 2-requirements/ |
 | Reviewer notes | Every candidate classified (FR-001..FR-008, NFR-001..NFR-006, UC-001..UC-005); open questions logged in Section 4; file update plan listed in Section 7; no hidden assumptions |
 | Approval date | 2026-08-04 |
+
