@@ -11,7 +11,7 @@
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
 | Level | User Goal |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 ---
 ### 2. Brief Description
