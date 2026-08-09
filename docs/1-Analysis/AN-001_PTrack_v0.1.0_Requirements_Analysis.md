@@ -58,4 +58,71 @@ Analysis Template
 | NFR-03 (source) | NFR-003 | NFR | System preserves project data between sessions without data loss under normal conditions | Must | Draft |
 | NFR-04 (source) | NFR-004 | NFR | Application runs on modern desktop browsers (Chrome, Edge, Firefox) | Should | Draft |
 | NFR-05 (source) | NFR-005 | NFR | Application is built with a clear, organized code structure to support future maintenance | Could | Draft |
-| NFR-06 (source) | NFR-006 | NFR | Application does not collect, transmit, or store personal user
+| NFR-06 (source) | NFR-006 | NFR | Application does not collect, transmit, or store personal user information in v0.1.0 | Must | Draft |
+---
+## 4. Ambiguity and Questions
+| # | Item | Why Ambiguous | Proposed Options | Needed From |
+|---|------|---------------|-------------------|-------------|
+| 1 | "Basic project information" (FR-001, UC-002) | "Name" is the only confirmed required field; the other fields shown in the project list (if any) are not specified | (a) Name only for v0.1.0; (b) Name + auto-generated creation date; (c) Name + optional description | Product/Analyst decision |
+| 2 | "Current development stage" values (FR-003/FR-004/FR-005) | The fixed list of stages (e.g., Planning, Design, Development, Testing, Done) is undefined, and whether it is free text or a fixed set is unclear | (a) Fixed predefined list of stages; (b) User-defined free-text stage | Analyst + Reviewer |
+| 3 | "Project status" values (FR-006/FR-007) | "Completed" is the only status explicitly named; the rest of the status set is undefined | (a) Fixed set: Not Started / In Progress / Completed; (b) Broader fixed set including On Hold/Paused | Analyst + Reviewer |
+| 4 | Data persistence mechanism (FR-008, NFR-003) | Persistence between sessions is required, but the storage mechanism (local storage vs. file vs. future DB per Release 0.2) is unspecified | Confirm local browser storage (e.g., localStorage) is acceptable for v0.1.0 given Release 0.2 introduces a centralized DB | Technical Lead |
+| 5 | Project deletion/editing (name change) | Absent from Scope, User Stories, and FRs entirely; unclear if intentionally excluded or an oversight | (a) Explicitly out of scope for v0.1.0; (b) Add as a small additional FR | Product Owner |
+---
+## 5. Traceability Preview
+| Artifact | Links To | Missing Links |
+|----------|----------|---------------|
+| | | Not filled -- no FR-Registry, UC-Registry, or TestCases entries exist yet for this project; to be completed once those registries are populated |
+---
+## 6. Quality Check (MoSCoW + INVEST)
+### 6.1 Prioritization (MoSCoW)
+| Candidate ID | Must | Should | Could | Won't (This Release) | Rationale |
+|--------------|------|--------|-------|------------------------|-----------|
+| FR-001 | Yes | | | | Core action; without it no project can exist |
+| FR-002 | Yes | | | | Needed to view any created project |
+| FR-003 | Yes | | | | Core stage-tracking objective of the MVP |
+| FR-004 | Yes | | | | Required to keep stage information accurate |
+| FR-005 | Yes | | | | Directly tied to Success Criteria |
+| FR-006 | Yes | | | | Directly tied to Success Criteria |
+| FR-007 | Yes | | | | Core status-tracking objective, incl. "Completed" |
+| FR-008 | Yes | | | | Explicit Success Criterion; without it, all progress is lost |
+| NFR-001 | | Yes | | | Important for adoption but not a blocking functional gate |
+| NFR-002 | | Yes | | | Performance target improves experience, not core function |
+| NFR-003 | Yes | | | | Same weight as FR-008 -- no persistence means MVP failure |
+| NFR-004 | | Yes | | | Cross-browser support desirable, not strictly blocking |
+| NFR-005 | | | Yes | | Code quality goal -- internal, no direct user-facing impact |
+| NFR-006 | Yes | | | | Hard constraint stated explicitly in PRD (no personal data) |
+### 6.2 Requirement Quality (INVEST)
+| Candidate ID | Independent | Negotiable | Valuable | Estimable | Small | Testable | Notes |
+|--------------|-------------|------------|----------|-----------|-------|----------|-------|
+| FR-001 | Yes | Yes | Yes | Yes | Yes | Yes | Depends on Ambiguity #1 (field set) |
+| FR-002 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-001 existing first |
+| FR-003 | No | Yes | Yes | No | Yes | Yes | Estimation blocked until Ambiguity #2 resolved |
+| FR-004 | No | Yes | Yes | No | Yes | Yes | Depends on FR-003; blocked by Ambiguity #2 |
+| FR-005 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-003/FR-004 |
+| FR-006 | No | Yes | Yes | No | Yes | Yes | Estimation blocked until Ambiguity #3 resolved |
+| FR-007 | No | Yes | Yes | No | Yes | Yes | Depends on FR-006; blocked by Ambiguity #3 |
+| FR-008 | Yes | Yes | Yes | No | No | Yes | Size depends on Ambiguity #4 (storage mechanism) |
+| NFR-001 | Yes | Yes | Yes | No | No | No | Subjective; needs measurable UX criteria to be testable |
+| NFR-002 | Yes | Yes | Yes | Yes | Yes | Yes | Clear numeric threshold (2 seconds) |
+| NFR-003 | No | Yes | Yes | No | No | Yes | Overlaps with FR-008; consider merging or cross-referencing |
+| NFR-004 | Yes | Yes | Yes | Yes | Yes | Yes | Clear, testable across 3 named browsers |
+| NFR-005 | Yes | Yes | No | No | No | No | Not independently user-valuable; hard to test directly |
+| NFR-006 | Yes | No | Yes | Yes | Yes | Yes | Hard constraint, not negotiable |
+---
+## 7. Recommended File Updates
+| File | Planned Update | Reason |
+|------|------------------|--------|
+| 2-requirements/FRs.md | Create; add rows FR-001 to FR-008 | Register FR candidates |
+| 2-requirements/UCs.md | Create; add rows UC-001 to UC-005 | Register UC candidates |
+| modules/[Module]/FR-001.md ... FR-008.md | Create | Detailed FR content, one file per ID (module name TBD) |
+| modules/[Module]/UC-001.md ... UC-005.md | Create | Detailed UC content (actors, flows, pre/postconditions per template), one file per ID (module name TBD) |
+| 2-requirements/NFRs.md | Create; add rows NFR-001 to NFR-006 | NFR impact alignment |
+---
+## 8. Decision and Sign-off
+| Decision | Value |
+|----------|-------|
+| Ready for authoring | Yes |
+| Blockers | None at Analysis level. Ambiguities #1-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under 2-requirements/ |
+| Reviewer notes | Every candidate classified (FR-001..FR-008, NFR-001..NFR-006, UC-001..UC-005); open questions logged in Section 4; file update plan listed in Section 7; no hidden assumptions |
+| Approval date | 2026-08-04 |
