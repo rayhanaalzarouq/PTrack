@@ -8,7 +8,7 @@
 | Module | Data Persistence |
 | Requirement Code | [FR-DATA-001-001] Persist Data |
 | Title | Persist Project Data |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 5 |
