@@ -11,7 +11,7 @@
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
 | Level | User Goal |
-| Status | Approved |
+| Status | Draft |
 | Priority | Must |
 ---
 ### 2. Brief Description
@@ -28,7 +28,7 @@ The user opens or navigates to the project list view.
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
 | 1 | User opens the project list view | System retrieves all stored projects |
-| 2 | (none) | System displays each project with its basic information (field set TBD pending Ambiguity #1, AN-001) |
+| 2 | (none) | System displays each project with its name and creation date (stage and status are shown per FR-STG-003 / FR-STS-001) |
 | 3 | User reviews the list | System keeps the list available for further actions (e.g., updating stage/status) |
 ---
 ### 6. Alternate Flows / Exceptions
@@ -48,7 +48,7 @@ The user opens or navigates to the project list view.
 ---
 ### 8. Business Rules
 - BR-001: Every project the user has created must appear in the list unless a failure occurs.
-- BR-002: The exact fields shown per project (beyond name) are TBD pending Ambiguity #1 (AN-001).
+- BR-002: Each project displays its name and creation date (resolved; see AN-001 Ambiguity #1).
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002

@@ -11,7 +11,7 @@
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
 | Level | User Goal |
-| Status | Approved |
+| Status | Draft |
 | Priority | Must |
 ---
 ### 2. Brief Description
@@ -33,10 +33,10 @@ The user selects the action to create a new project.
 | 3 | User confirms creation | System creates the project and adds it to the project list |
 ---
 ### 6. Alternate Flows / Exceptions
-#### A1 - Additional Fields Entered
-- Condition: Additional project fields beyond name are entered (field set TBD pending Ambiguity #1, AN-001).
+#### A1 - Automatic Creation Date
+- Condition: Always occurs as part of project creation (not user-triggered).
 - Flow:
-  1. User enters additional information if the field exists in the UI.
+  1. System automatically records the current date as the project's creation date.
   2. System stores it alongside the project name.
 #### E1 - Empty Name Submitted
 - Condition: User attempts to confirm creation with an empty name field.
@@ -53,7 +53,7 @@ The user selects the action to create a new project.
 ---
 ### 8. Business Rules
 - BR-001: A project name is required to create a project (per FR-PM-001).
-- BR-002: Additional required/optional fields beyond name are TBD pending Ambiguity #1 (AN-001).
+- BR-002: The system automatically records the project's creation date; no other fields (e.g., description) are captured at creation in v0.1.0.
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002, NFR-006

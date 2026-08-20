@@ -8,7 +8,7 @@
 | Module | Project Management |
 | Requirement Code | [FR-PM-002-001] List Projects |
 | Title | Display Project List |
-| Status | Approved |
+| Status | Draft |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 2 |
@@ -32,7 +32,7 @@
 ## 5. Constraints / Notes
 - Performance considerations: Load and display should complete within the NFR-002 response target.
 - Security implications: None identified for v0.1.0 per NFR-006 (no personal data collected).
-- Dependencies: The exact fields shown per project (beyond name) are pending resolution of Ambiguity #1 in AN-001.
+- Dependencies: Each project is displayed with its name and creation date (resolved during Requirements phase; see AN-001 Ambiguity #1). Stage and status are shown via FR-STG-003 and FR-STS-001 respectively.
 ---
 ## 6. Traceability
 | Related Artifact | Reference |

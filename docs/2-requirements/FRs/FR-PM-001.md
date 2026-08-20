@@ -8,14 +8,14 @@
 | Module | Project Management |
 | Requirement Code | [FR-PM-001-001] Create Project |
 | Title | Create New Project |
-| Status | Approved |
+| Status | Draft |
 | Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 1 |
 ---
 ## 2. Description
 **System shall:**
-> The system shall allow the user to create a new project by entering a project name.
+> The system shall allow the user to create a new project by entering a project name. The system shall automatically record the project's creation date; the creation date is system-generated and not user-entered.
 ---
 ## 3. Rationale (Optional but Recommended)
 - Business driver: Core entry point; no other PTrack feature is usable without the ability to create a project.
@@ -32,7 +32,7 @@
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002 (2 second response target).
 - Security implications: None identified for v0.1.0 per NFR-006 (no personal data collected).
-- Dependencies: The exact field set beyond "name" (e.g., description, auto-generated date) is pending resolution of Ambiguity #1 in AN-001.
+- Dependencies: Project fields for v0.1.0 are name (user-entered, required) and creation date (system-generated). No other fields are captured at creation (resolved during Requirements phase; see AN-001 Ambiguity #1).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |
