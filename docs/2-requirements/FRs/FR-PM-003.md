@@ -9,7 +9,7 @@
 | Requirement Code | [FR-PM-003-001] Edit Project Name |
 | Title | Edit Project Name |
 | Status | Draft |
-| Priority | Should |
+| Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Resolved from AN-001 Ambiguity #5; net-new behavior added during Requirements phase |
 ---

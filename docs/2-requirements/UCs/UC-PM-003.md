@@ -12,7 +12,7 @@
 | Supporting Actors | None |
 | Level | User Goal |
 | Status | Draft |
-| Priority | Should |
+| Priority | Must |
 ---
 ### 2. Brief Description
 The user edits an existing project's name, or permanently deletes a project, so the project list stays accurate and free of unwanted entries.

@@ -9,7 +9,7 @@
 | Requirement Code | [FR-PM-004-001] Delete Project |
 | Title | Delete Project |
 | Status | Draft |
-| Priority | Should |
+| Priority | Must |
 | Target Release | v0.1.0 |
 | Source | Resolved from AN-001 Ambiguity #5; net-new behavior added during Requirements phase |
 ---
