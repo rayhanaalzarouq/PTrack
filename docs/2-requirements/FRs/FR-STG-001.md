@@ -25,14 +25,14 @@
 ## 4. Acceptance Criteria
 | # | Given | When | Then |
 |---|-------|------|------|
-| AC1 | A project exists without an assigned stage | The user selects a stage from the stage dropdown | The project reflects the selected stage |
-| AC2 | The user opens the stage dropdown | The list is displayed | It contains exactly: Planning, Analysis, Design, Implementation, Testing, Done (fixed list, no free text) |
-| AC3 | The user selects a stage | Saving the stage fails | The project keeps its previous stage and the system reports the failure |
+| AC1 | A project exists without an assigned stage | The user assigns a stage value from the defined set (Planning, Analysis, Design, Implementation, Testing, Done) | The project reflects the assigned stage |
+| AC2 | The user attempts to assign a stage | The selected value is not one of the defined stage values | The system shall reject the assignment and prompt the user to select a valid stage |
+| AC3 | The user attempts to assign a stage | An unexpected error occurs while saving | The system shall not partially update the project, shall keep the previous stage, and shall report the failure to the user |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002.
 - Security implications: None identified.
-- Dependencies: Stage values fixed per ADR-009. Resolves Ambiguity #2 in AN-001. Changing the stage also updates the project status automatically (see FR-STS-002).
+- Dependencies: Stage values are fixed per ADR-009 and for v0.1.0: Planning, Analysis, Design, Implementation, Testing, Done (resolved during Requirements phase; see AN-001 Ambiguity #2). No free text or other values are permitted. Changing the stage also updates the project status automatically (see FR-STS-002).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |
