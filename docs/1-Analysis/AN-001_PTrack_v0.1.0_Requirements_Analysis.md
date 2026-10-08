@@ -63,21 +63,11 @@ Analysis Template
 ## 4. Ambiguity and Questions
 | # | Item | Why Ambiguous | Proposed Options | Needed From |
 |---|------|---------------|-------------------|-------------|
-| 1 | "Basic project information" (FR-001, UC-002) | "Name" is the only confirmed required field; the other fields shown in the project list (if any) are not specified | (a) Name only for v0.1.0; (b) Name + auto-generated creation date; (c) Name + optional description | Product/Analyst decision |
-| 2 | "Current development stage" values (FR-003/FR-004/FR-005) | The fixed list of stages (e.g., Planning, Design, Development, Testing, Done) is undefined, and whether it is free text or a fixed set is unclear | (a) Fixed predefined list of stages; (b) User-defined free-text stage | Analyst + Reviewer |
-| 3 | "Project status" values (FR-006/FR-007) | "Completed" is the only status explicitly named; the rest of the status set is undefined | (a) Fixed set: Not Started / In Progress / Completed; (b) Broader fixed set including On Hold/Paused | Analyst + Reviewer |
+| 1 | "Basic project information" (FR-001, UC-002) | "Name" is the only confirmed required field; the other fields shown in the project list (if any) are not specified | (a) Name only for v0.1.0; (b) Name + auto-generated creation date; (c) Name + optional description | RESOLVED 2026-10-08 (ADR-007): name (required) + optional description (max 250 characters) + auto-generated creation date; description and creation date shown in project details only |
+| 2 | "Current development stage" values (FR-003/FR-004/FR-005) | The fixed list of stages (e.g., Planning, Design, Development, Testing, Done) is undefined, and whether it is free text or a fixed set is unclear | (a) Fixed predefined list of stages; (b) User-defined free-text stage | RESOLVED 2026-10-08 (ADR-009): fixed list chosen from a dropdown: Planning, Analysis, Design, Implementation, Testing, Done |
+| 3 | "Project status" values (FR-006/FR-007) | "Completed" is the only status explicitly named; the rest of the status set is undefined | (a) Fixed set: Not Started / In Progress / Completed; (b) Broader fixed set including On Hold/Paused | RESOLVED 2026-10-08 (ADR-009): fixed set Not Started / In Progress / Completed, derived automatically from the stage (no stage = No status set); changes the PRD's manual status update |
 | 4 | Data persistence mechanism (FR-008, NFR-003) | Persistence between sessions is required, but the storage mechanism (local storage vs. file vs. future DB per Release 0.2) is unspecified | Confirm local browser storage (e.g., localStorage) is acceptable for v0.1.0 given Release 0.2 introduces a centralized DB | Technical Lead |
 | 5 | Project deletion/editing (name change) | Absent from Scope, User Stories, and FRs entirely; unclear if intentionally excluded or an oversight | (a) Explicitly out of scope for v0.1.0; (b) Add as a small additional FR | Product Owner |
-
-**Resolution cross-reference (added post-approval, for traceability only -- does not alter the table above):**
-Per append-only rules, resolutions to these ambiguities are recorded in the
-Requirements-phase artifacts that implement them, not by editing this
-approved analysis. For reference:
-- Ambiguity #1: resolved via FR-PM-001, FR-PM-002, UC-PM-001, UC-PM-002 (name + auto-generated creation date).
-- Ambiguity #2: resolved via FR-STG-001/002/003, UC-STG-001 (fixed stage list: Planning, Design, Development, Testing, Done).
-- Ambiguity #3: resolved via FR-STS-001/002, UC-STS-001 (fixed status list: Not Started, In Progress, Completed).
-- Ambiguity #4: resolved via FR-DATA-001, UC-DATA-001 (browser localStorage, per ADR-003).
-- Ambiguity #5: resolved via FR-PM-003, FR-PM-004, UC-PM-003 (edit and delete added as Must-priority requirements).
 ---
 ## 5. Traceability Preview
 | Artifact | Links To | Missing Links |
@@ -105,13 +95,13 @@ approved analysis. For reference:
 ### 6.2 Requirement Quality (INVEST)
 | Candidate ID | Independent | Negotiable | Valuable | Estimable | Small | Testable | Notes |
 |--------------|-------------|------------|----------|-----------|-------|----------|-------|
-| FR-001 | Yes | Yes | Yes | Yes | Yes | Yes | Depends on Ambiguity #1 (field set) |
+| FR-001 | Yes | Yes | Yes | Yes | Yes | Yes | Field set resolved by ADR-007 (was Ambiguity #1) |
 | FR-002 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-001 existing first |
-| FR-003 | No | Yes | Yes | No | Yes | Yes | Estimation blocked until Ambiguity #2 resolved |
-| FR-004 | No | Yes | Yes | No | Yes | Yes | Depends on FR-003; blocked by Ambiguity #2 |
+| FR-003 | No | Yes | Yes | Yes | Yes | Yes | Stage values resolved by ADR-009 (was Ambiguity #2) |
+| FR-004 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-003; stage values resolved by ADR-009 |
 | FR-005 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-003/FR-004 |
-| FR-006 | No | Yes | Yes | No | Yes | Yes | Estimation blocked until Ambiguity #3 resolved |
-| FR-007 | No | Yes | Yes | No | Yes | Yes | Depends on FR-006; blocked by Ambiguity #3 |
+| FR-006 | No | Yes | Yes | Yes | Yes | Yes | Status values resolved by ADR-009 (was Ambiguity #3) |
+| FR-007 | No | Yes | Yes | Yes | Yes | Yes | Now automatic, derived from stage (ADR-009); depends on FR-003/FR-004 |
 | FR-008 | Yes | Yes | Yes | No | No | Yes | Size depends on Ambiguity #4 (storage mechanism) |
 | NFR-001 | Yes | Yes | Yes | No | No | No | Subjective; needs measurable UX criteria to be testable |
 | NFR-002 | Yes | Yes | Yes | Yes | Yes | Yes | Clear numeric threshold (2 seconds) |
@@ -123,17 +113,16 @@ approved analysis. For reference:
 ## 7. Recommended File Updates
 | File | Planned Update | Reason |
 |------|------------------|--------|
-| 2-requirements/FRs.md | Create; add rows FR-001 to FR-008 | Register FR candidates |
-| 2-requirements/UCs.md | Create; add rows UC-001 to UC-005 | Register UC candidates |
-| modules/[Module]/FR-001.md ... FR-008.md | Create | Detailed FR content, one file per ID (module name TBD) |
-| modules/[Module]/UC-001.md ... UC-005.md | Create | Detailed UC content (actors, flows, pre/postconditions per template), one file per ID (module name TBD) |
-| 2-requirements/NFRs.md | Create; add rows NFR-001 to NFR-006 | NFR impact alignment |
+| docs/FR-Registry/FRs.md | Create; add rows FR-001 to FR-008 | Register FR candidates |
+| docs/UC-Registry/UCs.md | Create; add rows UC-001 to UC-005 | Register UC candidates |
+| docs/Packages/[Package]/FR-001.md ... FR-008.md | Create | Detailed FR content, one file per ID (package name TBD) |
+| docs/Packages/[Package]/UC-001.md ... UC-005.md | Create | Detailed UC content (actors, flows, pre/postconditions per template), one file per ID (package name TBD) |
+| docs/NFRs.md | Create; add rows NFR-001 to NFR-006 | NFR impact alignment |
 ---
 ## 8. Decision and Sign-off
 | Decision | Value |
 |----------|-------|
 | Ready for authoring | Yes |
-| Blockers | None at Analysis level. Ambiguities #1-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under 2-requirements/ |
+| Blockers | None at Analysis level. Ambiguities #1-#3 were resolved on 2026-10-08 (ADR-007, ADR-009); Ambiguities #4-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
 | Reviewer notes | Every candidate classified (FR-001..FR-008, NFR-001..NFR-006, UC-001..UC-005); open questions logged in Section 4; file update plan listed in Section 7; no hidden assumptions |
 | Approval date | 2026-08-04 |
-

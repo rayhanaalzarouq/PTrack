@@ -6,40 +6,40 @@
 | FR ID | FR-PM-004 |
 | Domain | |
 | Module | Project Management |
-| Requirement Code | [FR-PM-004-001] Delete Project |
-| Title | Delete Project |
-| Status | Draft |
+| Requirement Code | [FR-PM-004-001] Search Projects |
+| Title | Search Projects |
+| Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
-| Source | Resolved from AN-001 Ambiguity #5; net-new behavior added during Requirements phase |
+| Source | SWE decision, see ADR-008 (not in the original PRD) |
 ---
 ## 2. Description
 **System shall:**
-> The system shall allow the user to permanently delete an existing project, after the user confirms the deletion.
+> The system shall provide a search bar in the project list view that filters the displayed projects by project name as the user types.
 ---
 ## 3. Rationale (Optional but Recommended)
-- Business driver: Original PRD/User Stories did not address removing a project (e.g., one created by mistake or abandoned); this was flagged as a gap in AN-001 Ambiguity #5 and confirmed for inclusion in v0.1.0.
+- Business driver: Lets the user locate a project quickly as the list grows.
 - Regulatory or compliance reference: None identified.
-- Risk addressed: Prevents clutter from unwanted/mistaken projects accumulating with no way to remove them.
+- Risk addressed: Scope growth beyond the PRD; recorded as a deliberate extension in ADR-008.
 ---
 ## 4. Acceptance Criteria
 | # | Given | When | Then |
 |---|-------|------|------|
-| AC1 | An existing project is displayed | The user initiates deletion and confirms it | The project is permanently removed from the project list |
-| AC2 | The user initiates deletion of a project | The user cancels the confirmation | The project remains unchanged and is not deleted |
-| AC3 | The user attempts to delete a project | An unexpected error occurs during deletion | The system shall not partially delete the project and shall report the failure to the user |
+| AC1 | Several projects exist | The user types text that matches part of a project name | The list updates as the user types and shows only the projects whose names match |
+| AC2 | Projects exist | The typed text matches no project name | The system shall display a "no results" state, distinct from the empty state of FR-PM-002 AC2 |
+| AC3 | A search is active | The user clears the search field | The full project list is displayed again |
 ---
 ## 5. Constraints / Notes
-- Performance considerations: None specified beyond NFR-002.
-- Security implications: None identified.
-- Dependencies: Depends on FR-PM-001 (a project must exist to be deleted). Deletion is permanent in v0.1.0; per ADR-006, no export/backup exists in this release, so a deleted project cannot be recovered.
+- Performance considerations: Filtering should update within the NFR-002 response target.
+- Security implications: None identified for v0.1.0 per NFR-006.
+- Dependencies: Depends on FR-PM-002. Search applies to the project name only (not description, stage, status, or creation date).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |
 |------------------|------------|
 | Parent Requirement | |
-| Related FRs | FR-PM-001, FR-PM-003 |
-| Use Cases | UC-PM-003 |
+| Related FRs | FR-PM-002 |
+| Use Cases | UC-PM-004 |
 | Design Component | |
 | Test Cases | TC-XXX |
 ---

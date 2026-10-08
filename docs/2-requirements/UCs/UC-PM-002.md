@@ -11,7 +11,7 @@
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
 | Level | User Goal |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 ---
 ### 2. Brief Description
@@ -28,8 +28,8 @@ The user opens or navigates to the project list view.
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
 | 1 | User opens the project list view | System retrieves all stored projects |
-| 2 | (none) | System displays each project with its name and creation date (stage and status are shown per FR-STG-003 / FR-STS-001) |
-| 3 | User reviews the list | System keeps the list available for further actions (e.g., updating stage/status) |
+| 2 | (none) | System displays each project with its name |
+| 3 | User reviews the list and selects a project, or uses the search bar | System opens the project details (see UC-PM-003) or filters the list (see UC-PM-004) |
 ---
 ### 6. Alternate Flows / Exceptions
 #### A1 - No Projects Exist Yet
@@ -48,7 +48,7 @@ The user opens or navigates to the project list view.
 ---
 ### 8. Business Rules
 - BR-001: Every project the user has created must appear in the list unless a failure occurs.
-- BR-002: Each project displays its name and creation date (resolved; see AN-001 Ambiguity #1).
+- BR-002: The list shows the project name; the description and creation date are shown in project details only (ADR-007).
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002
@@ -59,5 +59,5 @@ The user opens or navigates to the project list view.
 ### 10. UI / API Notes (Optional)
 - UI screen references: TBD (Design phase).
 - API endpoint: TBD (Design phase).
-- Payload structure: TBD (Design phase); depends on resolution of Ambiguity #1 (AN-001).
+- Payload structure: TBD (Design phase); the list needs the project name (ADR-007).
 ---

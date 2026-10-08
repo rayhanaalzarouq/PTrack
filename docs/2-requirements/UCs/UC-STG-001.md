@@ -27,19 +27,19 @@ The user chooses to assign or change the development stage of a project.
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User selects a project | System shows the project's current stage, or "No stage assigned" if none set yet |
-| 2 | User selects a new stage value from the defined set (Planning, Design, Development, Testing, Done) | System accepts the selected value |
-| 3 | User confirms the change | System updates and displays the project's current stage |
+| 1 | User selects a project (opens its details, see UC-PM-003) | System shows the project's current stage (or "No stage assigned") |
+| 2 | User opens the stage dropdown and selects a stage from the list (Planning, Analysis, Design, Implementation, Testing, Done) | System accepts the selected value |
+| 3 | User confirms the change (selecting the stage applies it) | System updates and displays the project's current stage, and updates the status automatically (see UC-STS-001) |
 ---
 ### 6. Alternate Flows / Exceptions
 #### A1 - First-Time Stage Assignment
 - Condition: The project has no stage assigned yet.
 - Flow:
-  1. User assigns an initial stage value (see FR-STG-001).
+  1. User selects an initial stage from the dropdown (see FR-STG-001).
   2. System records it as the project's current stage.
-#### E1 - Invalid or Undefined Stage Value
-- Condition: The stage value entered/selected does not match one of the five defined stage values.
-- System Response: System rejects the change, prompts the user to choose one of the valid stage values (Planning, Design, Development, Testing, Done), and the project's stage remains unchanged.
+#### E1 - Stage Save Fails
+- Condition: An error occurs while saving the selected stage.
+- System Response: System keeps the previous stage and reports the failure (see FR-STG-001 AC3, FR-STG-002 AC3). An invalid value cannot be entered because the list is fixed.
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -49,7 +49,7 @@ The user chooses to assign or change the development stage of a project.
 ---
 ### 8. Business Rules
 - BR-001: A project can have exactly one current development stage at a time.
-- BR-002: The valid stage values are: Planning, Design, Development, Testing, Done. No other values or free text are permitted.
+- BR-002: Valid stage values are fixed: Planning, Analysis, Design, Implementation, Testing, Done; free text is not allowed (ADR-009).
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002
@@ -58,7 +58,7 @@ The user chooses to assign or change the development stage of a project.
   - NFR-002: Stage updates should complete within the 2 second response target.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: TBD (Design phase).
+- UI screen references: stage dropdown in the project details modal (see UC-PM-003); screen spec TBD in Design phase.
 - API endpoint: TBD (Design phase).
-- Payload structure: TBD (Design phase); depends on resolution of Ambiguity #2 (AN-001).
+- Payload structure: TBD (Design phase); stage is one of the six fixed values (ADR-009).
 ---
