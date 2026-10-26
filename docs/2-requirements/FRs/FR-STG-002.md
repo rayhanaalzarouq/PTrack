@@ -28,6 +28,7 @@
 | AC1 | An existing project has an assigned stage | The user selects a different stage from the dropdown | The project reflects the new stage |
 | AC2 | An existing project has an assigned stage | The user selects the same stage again | The stage is unchanged |
 | AC3 | The user selects a different stage | Saving fails | The project keeps its previous stage and the system reports the failure |
+| AC4 | The stage list is open | The user selects any stage in the list, earlier or later than the current one (including the last stage) | The project reflects the selected stage |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002.
@@ -38,7 +39,7 @@
 | Related Artifact | Reference |
 |------------------|------------|
 | Parent Requirement | |
-| Related FRs | FR-STG-001, FR-STG-003, FR-STS-002 |
+| Related FRs | FR-STG-001, FR-STG-003, FR-STS-002, FR-PM-003 |
 | Use Cases | UC-STG-001 |
 | Design Component | |
 | Test Cases | TC-XXX |

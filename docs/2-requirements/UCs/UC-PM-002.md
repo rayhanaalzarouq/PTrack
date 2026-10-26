@@ -38,7 +38,7 @@ The user opens or navigates to the project list view.
   1. System displays an empty state indicating no projects exist (see FR-PM-002 AC2).
 #### E1 - List Fails to Load
 - Condition: The project list fails to load due to a data access issue.
-- System Response: System displays an error state rather than an empty or partial list (see FR-PM-002 AC3).
+- System Response: System displays an error state with a Try again option rather than an empty or partial list (see FR-PM-002 AC3).
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -57,7 +57,7 @@ The user opens or navigates to the project list view.
   - NFR-002: The list should load within the 2 second response target.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: TBD (Design phase).
+- UI screen references: UI-PM-001 (Empty Project List), UI-PM-002 (Project List). UI-GEN-001 (Generic Error) for load failures.
 - API endpoint: TBD (Design phase).
 - Payload structure: TBD (Design phase); the list needs the project name (ADR-007).
 ---

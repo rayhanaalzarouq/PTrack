@@ -66,8 +66,8 @@ Analysis Template
 | 1 | "Basic project information" (FR-001, UC-002) | "Name" is the only confirmed required field; the other fields shown in the project list (if any) are not specified | (a) Name only for v0.1.0; (b) Name + auto-generated creation date; (c) Name + optional description | RESOLVED 2026-10-08 (ADR-007): name (required) + optional description (max 250 characters) + auto-generated creation date; description and creation date shown in project details only |
 | 2 | "Current development stage" values (FR-003/FR-004/FR-005) | The fixed list of stages (e.g., Planning, Design, Development, Testing, Done) is undefined, and whether it is free text or a fixed set is unclear | (a) Fixed predefined list of stages; (b) User-defined free-text stage | RESOLVED 2026-10-08 (ADR-009): fixed list chosen from a dropdown: Planning, Analysis, Design, Implementation, Testing, Done |
 | 3 | "Project status" values (FR-006/FR-007) | "Completed" is the only status explicitly named; the rest of the status set is undefined | (a) Fixed set: Not Started / In Progress / Completed; (b) Broader fixed set including On Hold/Paused | RESOLVED 2026-10-08 (ADR-009): fixed set Not Started / In Progress / Completed, derived automatically from the stage (no stage = No status set); changes the PRD's manual status update |
-| 4 | Data persistence mechanism (FR-008, NFR-003) | Persistence between sessions is required, but the storage mechanism (local storage vs. file vs. future DB per Release 0.2) is unspecified | Confirm local browser storage (e.g., localStorage) is acceptable for v0.1.0 given Release 0.2 introduces a centralized DB | Technical Lead |
-| 5 | Project deletion/editing (name change) | Absent from Scope, User Stories, and FRs entirely; unclear if intentionally excluded or an oversight | (a) Explicitly out of scope for v0.1.0; (b) Add as a small additional FR | Product Owner |
+| 4 | Data persistence mechanism (FR-008, NFR-003) | Persistence between sessions is required, but the storage mechanism (local storage vs. file vs. future DB per Release 0.2) is unspecified | Confirm local browser storage (e.g., localStorage) is acceptable for v0.1.0 given Release 0.2 introduces a centralized DB | RESOLVED (ADR-003): browser local storage for v0.1.0; failure handling per ADR-013 (save failure message with try again) |
+| 5 | Project deletion/editing (name change) | Absent from Scope, User Stories, and FRs entirely; unclear if intentionally excluded or an oversight | (a) Explicitly out of scope for v0.1.0; (b) Add as a small additional FR | RESOLVED (ADR-014): add editing and deleting as new requirements FR-PM-005 and FR-PM-006 |
 ---
 ## 5. Traceability Preview
 | Artifact | Links To | Missing Links |
@@ -102,7 +102,7 @@ Analysis Template
 | FR-005 | No | Yes | Yes | Yes | Yes | Yes | Depends on FR-003/FR-004 |
 | FR-006 | No | Yes | Yes | Yes | Yes | Yes | Status values resolved by ADR-009 (was Ambiguity #3) |
 | FR-007 | No | Yes | Yes | Yes | Yes | Yes | Now automatic, derived from stage (ADR-009); depends on FR-003/FR-004 |
-| FR-008 | Yes | Yes | Yes | No | No | Yes | Size depends on Ambiguity #4 (storage mechanism) |
+| FR-008 | Yes | Yes | Yes | No | No | Yes | Storage mechanism resolved by ADR-003 (was Ambiguity #4) |
 | NFR-001 | Yes | Yes | Yes | No | No | No | Subjective; needs measurable UX criteria to be testable |
 | NFR-002 | Yes | Yes | Yes | Yes | Yes | Yes | Clear numeric threshold (2 seconds) |
 | NFR-003 | No | Yes | Yes | No | No | Yes | Overlaps with FR-008; consider merging or cross-referencing |
@@ -123,6 +123,6 @@ Analysis Template
 | Decision | Value |
 |----------|-------|
 | Ready for authoring | Yes |
-| Blockers | None at Analysis level. Ambiguities #1-#3 were resolved on 2026-10-08 (ADR-007, ADR-009); Ambiguities #4-#5 remain open and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
+| Blockers | None at Analysis level. Ambiguities #1-#5 were resolved (ADR-007, ADR-009, ADR-003, ADR-013, ADR-014) and carry forward as input to the Requirements phase for decision; FR-Registry, UC-Registry, and NFRs.md do not exist yet under docs/ |
 | Reviewer notes | Every candidate classified (FR-001..FR-008, NFR-001..NFR-006, UC-001..UC-005); open questions logged in Section 4; file update plan listed in Section 7; no hidden assumptions |
 | Approval date | 2026-08-04 |

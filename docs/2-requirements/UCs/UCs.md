@@ -7,6 +7,8 @@
 | UC-PM-002   | View Project List                   |        | User (Software Engineer) | Approved |
 | UC-PM-003   | View Project Details                |        | User (Software Engineer) | Approved |
 | UC-PM-004   | Search Projects                     |        | User (Software Engineer) | Approved |
+| UC-PM-005   | Edit Project                        |        | User (Software Engineer) | Approved |
+| UC-PM-006   | Delete Project                      |        | User (Software Engineer) | Approved |
 | UC-STG-001  | Track Development Stage             |        | User (Software Engineer) | Approved |
 | UC-STS-001  | Track Project Status                 |        | User (Software Engineer) | Approved |
-| UC-DATA-001 | Persist Project Data Across Sessions |        | User (Software Engineer) | Draft |
+| UC-DATA-001 | Persist Project Data Across Sessions |        | User (Software Engineer) | Approved |

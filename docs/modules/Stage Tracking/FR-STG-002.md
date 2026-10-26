@@ -11,11 +11,11 @@
 | Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
-| Source | Derived from AN-001 (PTrack PRD v0.1.0) |
+| Source | Derived from AN-001 (PTrack PRD v0.1.0); stage values per ADR-009 |
 ---
 ## 2. Description
 **System shall:**
-> The system shall allow the user to modify the current development stage of an existing project.
+> The system shall allow the user to modify the current development stage of an existing project by selecting a different stage from the fixed list of stages.
 ---
 ## 3. Rationale (Optional but Recommended)
 - Business driver: Keeps stage information accurate as a project progresses.
@@ -25,20 +25,21 @@
 ## 4. Acceptance Criteria
 | # | Given | When | Then |
 |---|-------|------|------|
-| AC1 | An existing project has an assigned stage | The user changes the stage to a different valid value from the defined set (Planning, Design, Development, Testing, Done) | The project reflects the newly assigned stage |
-| AC2 | The user attempts to change a stage | The selected value is not one of the five defined stage values | The system shall reject the change and prompt the user to select a valid stage |
-| AC3 | The user attempts to change a stage | An unexpected error occurs while saving | The system shall not partially update the project and shall report the failure to the user |
+| AC1 | An existing project has an assigned stage | The user selects a different stage from the dropdown | The project reflects the new stage |
+| AC2 | An existing project has an assigned stage | The user selects the same stage again | The stage is unchanged |
+| AC3 | The user selects a different stage | Saving fails | The project keeps its previous stage and the system reports the failure |
+| AC4 | The stage list is open | The user selects any stage in the list, earlier or later than the current one (including the last stage) | The project reflects the selected stage |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: None specified beyond NFR-002.
 - Security implications: None identified.
-- Dependencies: Depends on FR-STG-001 (a stage must first be assignable). Stage values are fixed for v0.1.0: Planning, Design, Development, Testing, Done (resolved during Requirements phase; see AN-001 Ambiguity #2).
+- Dependencies: Depends on FR-STG-001 (a stage must first be assignable). Stage values fixed per ADR-009 (resolves Ambiguity #2 in AN-001). Changing the stage also updates the project status automatically (see FR-STS-002).
 ---
 ## 6. Traceability
 | Related Artifact | Reference |
 |------------------|------------|
 | Parent Requirement | |
-| Related FRs | FR-STG-001, FR-STG-003 |
+| Related FRs | FR-STG-001, FR-STG-003, FR-STS-002, FR-PM-003 |
 | Use Cases | UC-STG-001 |
 | Design Component | |
 | Test Cases | TC-XXX |

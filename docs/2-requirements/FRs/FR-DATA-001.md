@@ -11,7 +11,7 @@
 | Status | Approved |
 | Priority | Must |
 | Target Release | v0.1.0 |
-| Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 5 |
+| Source | Derived from AN-001 (PTrack PRD v0.1.0), User Story 5; failure handling per ADR-013 |
 ---
 ## 2. Description
 **System shall:**
@@ -27,12 +27,12 @@
 |---|-------|------|------|
 | AC1 | The user has created and updated projects | The user closes and reopens the application | All previously created projects and their stage/status are present as last set |
 | AC2 | No projects have been created | The user reopens the application | The project list is empty, with no data loss and no phantom projects |
-| AC3 | Saved project data exists | The browser's localStorage is unavailable (e.g., disabled, private/incognito browsing, or storage quota exceeded) | The system shall not silently lose data and shall inform the user that data could not be saved or loaded |
+| AC3 | Saved project data exists | A save fails or the underlying storage is unavailable or corrupted | The system shall inform the user that saving failed with a warning message and not silently lose data |
 ---
 ## 5. Constraints / Notes
 - Performance considerations: Related to NFR-003 (no data loss under normal conditions).
 - Security implications: None identified per NFR-006 (no personal data collected in v0.1.0).
-- Dependencies: Storage mechanism for v0.1.0 is the browser's localStorage (per ADR-003, Decision Log; resolved during Requirements phase, see AN-001 Ambiguity #4). Data is tied to the specific browser/device used and does not sync across browsers or devices. This also relates to NFR-003.
+- Dependencies: Storage mechanism is browser local storage per ADR-003 (resolves Ambiguity #4 in AN-001). Related to NFR-003.
 ---
 ## 6. Traceability
 | Related Artifact | Reference |

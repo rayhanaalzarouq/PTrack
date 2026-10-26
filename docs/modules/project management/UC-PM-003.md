@@ -5,70 +5,70 @@
 | Field | Value |
 |-------|--------|
 | UC ID | UC-PM-003 |
-| Title | Edit or Delete Project |
-| Related FRs | FR-PM-003, FR-PM-004 |
+| Title | View Project Details |
+| Related FRs | FR-PM-003, FR-PM-007 |
 | Domain | |
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
 | Level | User Goal |
-| Status | Draft |
+| Status | Approved |
 | Priority | Must |
 ---
 ### 2. Brief Description
-The user edits an existing project's name, or permanently deletes a project, so the project list stays accurate and free of unwanted entries.
+The user selects a project from the list, or has just created one, to see its details: name, description, status, current stage, and creation date.
 ---
 ### 3. Preconditions
-- The project already exists (see UC-PM-001).
 - The application is open.
+- At least one project exists (see UC-PM-001).
 ---
 ### 4. Trigger
-The user chooses to edit or delete a project from the project list.
+The user selects a project in the project list, or a project has just been created (see UC-PM-001).
 ---
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User selects a project and chooses "Edit" | System presents the current name for editing |
-| 2 | User updates the name and confirms | System validates and updates the project's name |
-| 3 | User views the project list | System displays the project with its updated name |
+| 1 | User selects a project in the project list (or creation of a project completes) | System displays the project's details card in the main area |
+| 2 | (none) | System shows the project name, description, status, current stage, and creation date |
+| 3 | User selects close from the three-dot menu | System closes the details and shows the message asking the user to choose a project (see FR-PM-007) |
 ---
 ### 6. Alternate Flows / Exceptions
-#### A1 - Delete Project
-- Condition: The user chooses "Delete" instead of "Edit".
+#### A1 - No Description
+- Condition: The selected project has no description.
 - Flow:
-  1. System prompts the user to confirm the deletion.
-  2. User confirms.
-  3. System permanently removes the project from the project list (see FR-PM-004).
-#### A2 - Cancel Deletion
-- Condition: The user cancels the deletion confirmation prompt.
+  1. System shows an explicit empty state for the description (see FR-PM-003 AC2).
+#### A2 - Change Stage From Details
+- Condition: The user wants to change the project's stage.
 - Flow:
-  1. System takes no action; the project remains in the list unchanged.
-#### E1 - Empty Name on Edit
-- Condition: The user attempts to confirm an edit with an empty name field.
-- System Response: System rejects the edit and indicates that a name is required (see FR-PM-003 AC2).
-#### E2 - Edit or Delete Failure
-- Condition: An unexpected error occurs while saving an edit or processing a deletion.
-- System Response: System does not partially update or delete the project and reports the failure to the user (see FR-PM-003 AC3, FR-PM-004 AC3).
+  1. User opens the stage dropdown on the card and selects a stage (see UC-STG-001).
+  2. System shows the new stage and the automatically updated status (see FR-PM-003 AC4, UC-STS-001).
+#### A3 - No Project Selected
+- Condition: Projects exist but none is selected for display, including after the details are closed.
+- Flow:
+  1. System displays a message asking the user to choose a project, or create a new one (see FR-PM-007 AC1).
+  2. User selects a project; the flow continues at step 1 (see FR-PM-007 AC2).
+#### E1 - Details Fail to Load
+- Condition: The project details fail to load due to a data access issue.
+- System Response: System displays an error state with a Try again option rather than blank or incorrect details (see FR-PM-003 AC3).
 ---
 ### 7. Postconditions
 #### Success Postconditions
-- The project reflects its updated name, or no longer appears in the project list if deleted.
+- The project details were displayed; no data changed unless the user changed the stage (A2).
 #### Failure Postconditions
-- The project is unchanged: its name is as before, and it remains in the project list.
+- The details are not shown; an error state is displayed instead.
 ---
 ### 8. Business Rules
-- BR-001: A project name is required; an edit cannot result in an empty name (see FR-PM-003).
-- BR-002: Deletion is permanent in v0.1.0; there is no undo and no backup/export to recover a deleted project (see ADR-006, FR-PM-004).
-- BR-003: Deletion requires explicit user confirmation before it takes effect.
+- BR-001: The description and creation date are shown in project details only, not in the project list (ADR-007).
+- BR-002: The status is derived from the stage and cannot be set directly (ADR-009).
 ---
 ### 9. Non-Functional Requirements Impacted
-- NFR IDs (from NFRs.md): NFR-001, NFR-002, NFR-003
+- NFR IDs (from NFRs.md): NFR-001, NFR-002, NFR-006
 - Impact notes per referenced NFR:
-  - NFR-001: Editing and deleting a project should remain simple and require minimal effort, while the deletion confirmation step remains a deliberate exception to prevent accidental data loss.
-  - NFR-002: Edit and delete actions should complete within the 2 second response target.
-  - NFR-003: Deletion is a data-changing operation; the updated project list (with the project removed) must persist correctly per FR-DATA-001.
+  - NFR-001: Viewing details should require a single action (selecting the project).
+  - NFR-002: The details card should be displayed within the 2 second response target.
+  - NFR-006: No personal user information is shown or stored.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: UI-PM-001 (Project Dashboard).
+- UI screen references: UI-PM-003 (Project Details), UI-PM-009 (Choose a Project), UI-GEN-001 (Generic Error) for load failures.
 - API endpoint: TBD (Design phase).
-- Payload structure: TBD (Design phase).
+- Payload structure: name, description, status, stage, creation date; final structure TBD (Design phase).
 ---

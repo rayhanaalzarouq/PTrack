@@ -6,7 +6,7 @@
 |-------|--------|
 | UC ID | UC-PM-003 |
 | Title | View Project Details |
-| Related FRs | FR-PM-003 |
+| Related FRs | FR-PM-003, FR-PM-007 |
 | Domain | |
 | Primary Actor | User (Software Engineer) |
 | Supporting Actors | None |
@@ -15,21 +15,21 @@
 | Priority | Must |
 ---
 ### 2. Brief Description
-The user selects a project from the list to see its details: name, description, status, current stage, and creation date.
+The user selects a project from the list, or has just created one, to see its details: name, description, status, current stage, and creation date.
 ---
 ### 3. Preconditions
 - The application is open.
 - At least one project exists (see UC-PM-001).
 ---
 ### 4. Trigger
-The user selects a project in the project list.
+The user selects a project in the project list, or a project has just been created (see UC-PM-001).
 ---
 ### 5. Main Success Scenario (Basic Flow)
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
-| 1 | User selects a project in the project list | System opens a modal window at the center of the interface |
+| 1 | User selects a project in the project list (or creation of a project completes) | System displays the project's details card in the main area |
 | 2 | (none) | System shows the project name, description, status, current stage, and creation date |
-| 3 | User closes the modal | System returns to the project list |
+| 3 | User selects close from the three-dot menu | System closes the details and shows the message asking the user to choose a project (see FR-PM-007) |
 ---
 ### 6. Alternate Flows / Exceptions
 #### A1 - No Description
@@ -39,11 +39,16 @@ The user selects a project in the project list.
 #### A2 - Change Stage From Details
 - Condition: The user wants to change the project's stage.
 - Flow:
-  1. User opens the stage dropdown in the modal and selects a stage (see UC-STG-001).
+  1. User opens the stage dropdown on the card and selects a stage (see UC-STG-001).
   2. System shows the new stage and the automatically updated status (see FR-PM-003 AC4, UC-STS-001).
+#### A3 - No Project Selected
+- Condition: Projects exist but none is selected for display, including after the details are closed.
+- Flow:
+  1. System displays a message asking the user to choose a project, or create a new one (see FR-PM-007 AC1).
+  2. User selects a project; the flow continues at step 1 (see FR-PM-007 AC2).
 #### E1 - Details Fail to Load
 - Condition: The project details fail to load due to a data access issue.
-- System Response: System displays an error state rather than blank or incorrect details (see FR-PM-003 AC3).
+- System Response: System displays an error state with a Try again option rather than blank or incorrect details (see FR-PM-003 AC3).
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -59,11 +64,11 @@ The user selects a project in the project list.
 - NFR IDs (from NFRs.md): NFR-001, NFR-002, NFR-006
 - Impact notes per referenced NFR:
   - NFR-001: Viewing details should require a single action (selecting the project).
-  - NFR-002: The modal should open within the 2 second response target.
+  - NFR-002: The details card should be displayed within the 2 second response target.
   - NFR-006: No personal user information is shown or stored.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: project details modal opened from the project list (screen spec TBD in Design phase).
+- UI screen references: UI-PM-003 (Project Details), UI-PM-009 (Choose a Project), UI-GEN-001 (Generic Error) for load failures.
 - API endpoint: TBD (Design phase).
 - Payload structure: name, description, status, stage, creation date; final structure TBD (Design phase).
 ---

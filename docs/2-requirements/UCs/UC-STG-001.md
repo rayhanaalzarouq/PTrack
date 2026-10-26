@@ -58,7 +58,7 @@ The user chooses to assign or change the development stage of a project.
   - NFR-002: Stage updates should complete within the 2 second response target.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: stage dropdown in the project details modal (see UC-PM-003); screen spec TBD in Design phase.
+- UI screen references: UI-STG-001 (Project Status and Stage), placed inside the project details card. UI-DATA-001 (Save Failure) when saving the stage fails.
 - API endpoint: TBD (Design phase).
 - Payload structure: TBD (Design phase); stage is one of the six fixed values (ADR-009).
 ---

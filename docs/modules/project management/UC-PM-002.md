@@ -28,8 +28,8 @@ The user opens or navigates to the project list view.
 | Step | Actor Action | System Response |
 |------|--------------|----------------|
 | 1 | User opens the project list view | System retrieves all stored projects |
-| 2 | (none) | System displays each project with its basic information (field set TBD pending Ambiguity #1, AN-001) |
-| 3 | User reviews the list | System keeps the list available for further actions (e.g., updating stage/status) |
+| 2 | (none) | System displays each project with its name |
+| 3 | User reviews the list and selects a project, or uses the search bar | System opens the project details (see UC-PM-003) or filters the list (see UC-PM-004) |
 ---
 ### 6. Alternate Flows / Exceptions
 #### A1 - No Projects Exist Yet
@@ -38,7 +38,7 @@ The user opens or navigates to the project list view.
   1. System displays an empty state indicating no projects exist (see FR-PM-002 AC2).
 #### E1 - List Fails to Load
 - Condition: The project list fails to load due to a data access issue.
-- System Response: System displays an error state rather than an empty or partial list (see FR-PM-002 AC3).
+- System Response: System displays an error state with a Try again option rather than an empty or partial list (see FR-PM-002 AC3).
 ---
 ### 7. Postconditions
 #### Success Postconditions
@@ -48,7 +48,7 @@ The user opens or navigates to the project list view.
 ---
 ### 8. Business Rules
 - BR-001: Every project the user has created must appear in the list unless a failure occurs.
-- BR-002: The exact fields shown per project (beyond name) are TBD pending Ambiguity #1 (AN-001).
+- BR-002: The list shows the project name; the description and creation date are shown in project details only (ADR-007).
 ---
 ### 9. Non-Functional Requirements Impacted
 - NFR IDs (from NFRs.md): NFR-001, NFR-002
@@ -57,7 +57,7 @@ The user opens or navigates to the project list view.
   - NFR-002: The list should load within the 2 second response target.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: TBD (Design phase).
+- UI screen references: UI-PM-001 (Empty Project List), UI-PM-002 (Project List). UI-GEN-001 (Generic Error) for load failures.
 - API endpoint: TBD (Design phase).
-- Payload structure: TBD (Design phase); depends on resolution of Ambiguity #1 (AN-001).
+- Payload structure: TBD (Design phase); the list needs the project name (ADR-007).
 ---

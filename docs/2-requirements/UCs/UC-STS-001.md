@@ -58,7 +58,7 @@ The user views a project, or changes its stage (see UC-STG-001).
   - NFR-002: Status updates should complete within the 2 second response target.
 ---
 ### 10. UI / API Notes (Optional)
-- UI screen references: status shown in the project details modal (see UC-PM-003); screen spec TBD in Design phase.
+- UI screen references: UI-STG-001 (Project Status and Stage), placed inside the project details card. UI-DATA-001 (Save Failure) when saving the stage fails.
 - API endpoint: TBD (Design phase).
 - Payload structure: TBD (Design phase); status is derived from stage per ADR-009.
 ---
