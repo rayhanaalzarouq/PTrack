@@ -17,7 +17,7 @@
 | color-accent-soft | #bdd9ff | PT logo tile |
 | color-surface | #ffffff | App background, sidebar, status and stage box, menus |
 | color-surface-muted | #f3f3f8 | Sidebar Projects dropdown fill |
-| color-canvas | #a3a3a3 | Area around the app frame (sampled) |
+| color-canvas | not extracted | Light grey area around the app frame; the exported images have a transparent margin, so its color cannot be sampled |
 | color-divider | #bababa | Line between sidebar and main area |
 | color-modal-header | #edf4fa | Header band of the Create new project modal |
 | color-border | #d9e0e7 | Input, textarea, and Cancel button borders |
