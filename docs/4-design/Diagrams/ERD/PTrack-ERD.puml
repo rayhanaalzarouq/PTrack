@@ -1,0 +1,46 @@
+@startuml PTrack-ERD
+hide methods
+hide stereotypes
+
+title PTrack v0.1.0 — Entity-Relationship Diagram
+
+entity "Project" as Project {
+  *id : UUID <<PK>>
+  --
+  name : String [NOT NULL, max 100]
+  description : String [NULLABLE, max 250]
+  createdAt : Date [NOT NULL]
+  stage : Enum [NULLABLE]
+  status : Enum [NULLABLE]
+}
+
+note right of Project
+  stage values (ADR-009):
+  Planning | Analysis | Design |
+  Implementation | Testing | Done
+  -- null when no stage assigned --
+
+  status values (ADR-009, derived from stage):
+  No status set (stage = null)
+  Not Started   (stage = Planning)
+  In Progress   (stage = Analysis | Design |
+                          Implementation | Testing)
+  Completed     (stage = Done)
+  -- stored in localStorage alongside stage --
+
+  name: unique (case-insensitive, spaces ignored)
+  (ADR-010)
+end note
+
+storage "localStorage" as LS <<browser>>
+
+Project ..> LS : serialised as JSON\n(atomic write, all attributes)
+
+note bottom of LS
+  Mechanism: browser localStorage (ADR-003)
+  Serialisation: JSON / ISO 8601 dates
+  Scope: v0.1.0 single local user
+  Future: migrate to centralised DB in Release 0.2
+end note
+
+@enduml

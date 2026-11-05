@@ -1,0 +1,30 @@
+@startuml ProjectStatus-State
+hide empty description
+
+title PTrack v0.1.0 — Project Status Lifecycle\n(status derived from stage per ADR-009)
+
+[*] --> NoStatusSet : project created\n(stage = null)
+
+state "No status set" as NoStatusSet
+state "Not Started" as NotStarted
+state "In Progress" as InProgress
+state "Completed" as Completed
+
+NoStatusSet --> NotStarted : stage set to Planning
+NoStatusSet --> InProgress : stage set to Analysis,\nDesign, Implementation,\nor Testing
+NoStatusSet --> Completed  : stage set to Done
+
+NotStarted --> InProgress  : stage changed to Analysis,\nDesign, Implementation,\nor Testing
+NotStarted --> Completed   : stage changed to Done
+NotStarted --> NoStatusSet : stage cleared\n[not applicable in v0.1.0\n— stage cannot be unset]
+
+InProgress --> NotStarted  : stage changed to Planning
+InProgress --> Completed   : stage changed to Done
+InProgress --> InProgress  : stage changed to another\nmid-development stage
+
+Completed --> NotStarted   : stage changed to Planning
+Completed --> InProgress   : stage changed to Analysis,\nDesign, Implementation,\nor Testing
+
+note "All transitions are triggered by\nthe user selecting a stage from\nthe stage dropdown (UC-STG-001).\nstatus is never set directly by the user\n(ADR-009). On save failure the stage\n(and therefore the status) reverts to\nits previous value (FR-STG-001 AC3)." as N1
+
+@enduml
