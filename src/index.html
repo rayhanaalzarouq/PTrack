@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PTrack — Project Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       GENERIC ERROR SCREEN (UI-GEN-001)
+       Shown on catastrophic load failure — no sidebar/search
+       ===================================================== -->
+  <div id="screen-generic-error" class="screen-generic-error" hidden>
+    <div class="error-panel">
+      <div class="error-icon-circle">
+        <span class="error-icon" aria-hidden="true">⚠</span>
+      </div>
+      <h1>Something went wrong.</h1>
+      <p>We couldn't load your projects. Please try again.</p>
+      <button id="btn-try-again" class="btn-accent">
+        ↺ Try Again
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       APP SHELL
+       ===================================================== -->
+  <div id="app-shell" class="app-shell" hidden>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Navigation">
+      <div class="sidebar-brand">
+        <div class="logo-tile" aria-hidden="true">PT</div>
+        <span class="app-name">PTrack</span>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Projects">
+        <button
+          id="btn-projects-toggle"
+          class="projects-pill"
+          aria-expanded="false"
+          aria-controls="sidebar-project-list"
+        >
+          <span class="pill-text">Projects</span>
+          <span class="pill-chevron" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+
+        <ul
+          id="sidebar-project-list"
+          class="sidebar-project-list"
+          role="listbox"
+          aria-label="Your projects"
+          hidden
+        >
+          <!-- Populated by JS (FR-PM-002) -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- SIDEBAR / MAIN DIVIDER -->
+    <div class="sidebar-divider" aria-hidden="true"></div>
+
+    <!-- MAIN AREA -->
+    <main class="main-area" id="main-area">
+
+      <!-- TOP SEARCH BAR (UI-PM-002, FR-PM-004) -->
+      <div class="top-bar" id="top-bar" hidden>
+        <div class="search-bar" role="search">
+          <input
+            id="search-input"
+            type="text"
+            class="search-input"
+            placeholder="Search ..."
+            aria-label="Search projects by name"
+            autocomplete="off"
+          >
+          <button id="btn-search" class="btn-search" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- DYNAMIC CONTENT AREA -->
+      <div id="content-area" class="content-area" aria-live="polite">
+        <!-- Rendered by app.js based on state -->
+      </div>
+
+    </main>
+  </div><!-- /app-shell -->
+
+
+  <!-- =====================================================
+       CREATE / EDIT MODAL
+       (UI-PM-004 / UI-PM-006 / UI-PM-007 / UI-DATA-001)
+       ===================================================== -->
+  <div
+    id="modal-overlay"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    hidden
+  >
+    <div class="modal">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <h2 id="modal-title">Create new project</h2>
+          <p id="modal-subtitle" class="modal-subtitle">Fill in the details below to add a new project.</p>
+        </div>
+        <button id="modal-close" class="modal-close-btn" aria-label="Close">×</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <!-- Save failure banner (UI-DATA-001) — no button, message only -->
+        <div id="modal-save-fail" class="save-failure-banner" role="alert" hidden>
+          <span aria-hidden="true">⚠</span> Saving failed. Please try again.
+        </div>
+
+        <!-- Project Name field -->
+        <div class="field-group">
+          <label for="input-name" class="field-label">
+            Project Name
+            <span class="required-star" aria-label="required">*</span>
+          </label>
+          <input
+            id="input-name"
+            type="text"
+            class="field-input"
+            placeholder="Enter project name"
+            aria-required="true"
+            aria-describedby="name-error"
+            autocomplete="off"
+          >
+          <!-- UI-PM-006 / UI-PM-007: inline error -->
+          <div id="name-error" class="field-error" role="alert" hidden></div>
+        </div>
+
+        <!-- Description field (FR-PM-001 AC5, AC6, AC9) -->
+        <div class="field-group">
+          <label for="input-desc" class="field-label">
+            Description
+            <span class="field-label-optional">(Optional)</span>
+          </label>
+          <textarea
+            id="input-desc"
+            class="field-textarea"
+            placeholder="Enter a short description"
+            rows="4"
+            aria-describedby="desc-counter"
+          ></textarea>
+          <!-- Character counter: 0/250 -->
+          <div id="desc-counter" class="char-counter" aria-live="polite">0/250</div>
+        </div>
+
+      </div><!-- /modal-body -->
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button id="modal-cancel" class="btn-secondary">Cancel</button>
+        <button id="modal-submit" class="btn-primary">Create</button>
+      </div>
+
+    </div><!-- /modal -->
+  </div><!-- /modal-overlay -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>
