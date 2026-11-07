@@ -677,7 +677,10 @@ function clearNameError() {
 
 function handleModalSubmit() {
   const name        = $('input-name')?.value.trim() ?? '';
-  const description = $('input-desc')?.value.trim() ?? '';
+  let description   = $('input-desc')?.value.trim() ?? '';
+  if (description.length > 250) {
+    description = description.slice(0, 250);
+  }
 
   if (!name) {
     showNameError('Project name is required.');
@@ -754,7 +757,11 @@ function syncCharCounter(textarea) {
 }
 
 function onDescInput(e) {
-  syncCharCounter(e.target);
+  const ta = e.target;
+  if (ta.value.length > 250) {
+    ta.value = ta.value.slice(0, 250);
+  }
+  syncCharCounter(ta);
 }
 
 function onDescPaste(e) {
